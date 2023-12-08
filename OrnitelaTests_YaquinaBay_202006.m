@@ -31,7 +31,8 @@ figure(1)
 clf
 
 
-for ii = 1:1
+for ii = 2:2
+
     
     Drbr = interp1(dn,D,dn10Hz{ii}) ;
     %  get an average data point offset b/w the bird tag and the RBR CTD
@@ -49,16 +50,22 @@ for ii = 1:1
     %  Get a mean depth offset between the bird tag and the RBR CTD    
     dD(ii) = mean(Drbr-Dtmp,'omitnan') ;
 
-%     plot(Drbr,Dtmp+dD(ii),'ko') ;
-    plot(Drbr,Dtmp,'ko') ;
+    plot(Drbr,Dtmp+dD(ii),'ko') ;
+%     plot(Drbr,Dtmp,'ko') ;
     hold on
-    
+    % interpolate T and C of RBR to Ornitela
+
+     Trbr = interp1(dn,T,dntmp) ;
+     Crbr = interp1(dn,C,dntmp) ;
+
+
 end
 plot([0 12],[0 12],'r') ;
 title('Water Depth (Pressure) Comparison')
 ylabel('Ornitela Tag (meters; all tags combined)') ;
 xlabel('RBR CTD (meters)') ;
 
+%%
 figure(1)
 % print -djpeg90 -r300 OrnitelaTests_YaquinaBay_202006_Pressure.jpg
 
@@ -237,10 +244,10 @@ print  -djpeg90 -r300 OrnitelaTests_YaquinaBay_202006_TagInteriorTemp.jpg
 
 figure(5)
 clf
-plot_size(1,5,15,5) ;
+% plot_size(1,5,15,5) ;
 figure(6)
 clf
-plot_size(1,5,15,5) ;
+% plot_size(1,5,15,5) ;
 dn1 = datenum('26-Jun-2020 01:29:11') ;
 dn2 = datenum('26-Jun-2020 01:38:30') ;
 for ii = 1:20 ;
