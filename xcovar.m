@@ -10,7 +10,7 @@ function [Rxy,mux,s2x,muy,s2y,k,Nk] = xcovar(x,y,kkk)
      Rxy(ik) = sum((x(1:end-ik+1)-mux).*(y(ik:end)-muy),'omitnan');
  end
 
- k=1:kkk;
+ k=(1:kkk)-1;
  Nk=kkk;
 
  return
